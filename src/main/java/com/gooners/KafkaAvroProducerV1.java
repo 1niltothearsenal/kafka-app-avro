@@ -1,8 +1,11 @@
 package com.gooners;
 
+import com.example.Customer;
 import io.confluent.kafka.serializers.KafkaAvroDeserializer;
+import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.clients.producer.RecordMetadata;
 import org.apache.kafka.common.serialization.StringSerializer;
 
 import java.util.Properties;
@@ -28,15 +31,30 @@ public class KafkaAvroProducerV1 {
         properties.setProperty(SCHEMA_REGISTRY_URL,"http://127.0.0.1:8081");
 
 
-//        KafkaProducer<String,Customer> kafkaProducer = new KafkaProducer<String, Customer>(properties);
-//        String topic = "customer-avro";
-//
-//
-//        Customer customer = ??;
-//
-//        ProducerRecord<String,Customer> producerRecord = new ProducerRecord<String, Customer>(
-//                topic,customer
-//        );
+        KafkaProducer<String, Customer> kafkaProducer = new KafkaProducer<String, Customer>(properties);
+        String topic = "customer-avro";
+
+
+        Customer customer = Customer.newBuilder()
+                .setFirstName("JOhn")
+                .setLastName("Doe")
+                .setAge(26)
+                .setHeight(185.5f)
+                .setWeight(85.6f)
+                .setAutomatedEmail(false)
+                .build();
+
+        ProducerRecord<String,Customer> producerRecord = new ProducerRecord<String, Customer>(
+                topic,customer
+        );
+
+        kafkaProducer.send(producerRecord, (recordMetadata,exception) ->
+        {
+            if(exception == null){
+
+            }
+
+        });
 
 
     }
