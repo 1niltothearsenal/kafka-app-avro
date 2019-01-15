@@ -56,7 +56,17 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/gooners/KafkaAvroConsumerV1.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/com/gooners/KafkaAvroProducerV1.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/GITEXPERIMENT/kafka-beginners-course/README.md">
           <value>
             <set />
           </value>
